@@ -9,7 +9,7 @@ use Fasttmv\Classes\Conexao;
 $entityManager = Conexao::getInstance();
 
 $platform = $entityManager->getConnection()->getSchemaManager()->getDatabasePlatform();
-
+// registra tipo
 $platform->registerDoctrineTypeMapping('enum', 'string');
 
 return ConsoleRunner::createHelperSet($entityManager);

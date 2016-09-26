@@ -1,0 +1,36 @@
+{
+    "name": "ambientesoft/fasttmv",
+    "type": "library",
+    "description": "Fastmv é usado para desenvolver sistemas baseados em symfony",
+    "keywords": ["symfony","base","projeto"],
+    "license": ["GPL-3.0+","LGPL-3.0+"],
+    "require": {
+        "doctrine/orm": "2.*",
+        "symfony/yaml": "2.*",
+        "silex/silex": "~1.3",
+        "symfony/security": "^3.0",
+        "symfony/validator": "^3.0",   
+        "symfony/twig-bridge": "^3.0",
+        "monolog/monolog": "^1.19"
+    },
+    "require-dev":{
+      "phpunit/phpunit": "3.7.*"
+    },
+    "autoload": {
+        "psr-4": {
+          "Fasttmv\\Classes\\": "class/",
+          "Fasttmv\\Entity\\" : "class/entity/",
+          "Fasttmv\\Dao\\" : "class/dao/",
+          "Fasttmv\\API\\" : ["controllers/","providers/","encoders/","controllers/api/","controllers/views/"],
+          "Fasttmv\\Tests\\" : "tests/",
+          "Fasttmv\\Interfaces\\": "interface/"
+        }
+    },
+    "extra": {
+      "branch-alias": {
+        "dev-master": "1.0-dev"
+      }
+    },
+    "minimum-stability": "dev"
+
+}

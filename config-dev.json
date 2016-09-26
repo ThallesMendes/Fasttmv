@@ -1,0 +1,27 @@
+{
+  "global" : {
+    "page_size"         : 20,
+    "dev_mode"          : true,
+    "namespace_entity"  : "Fasttmv\\Entity\\"
+  },
+  "url" : {
+    "url_principal" : "http://sacoleira.sistema:10802/",
+    "url_raiz"      : "/",
+    "url_resource"  : "http://sacoleira.sistema:10802/resource/",
+    "url_views"     : "http://sacoleira.sistema:10802/views/",
+    "url_public"    : "http://sacoleira.sistema:10802/public/",
+    "url_api"       : "http://sacoleira.sistema:10802/rest/"
+  },
+  "db" : {
+    "driver"        : "pdo_mysql",
+    "user"          : "root",
+    "host"          : "localhost",
+    "password"      : "19680325",
+    "database"      : "api-escritorio"
+  },
+  "api" : {
+    "user" : "admin",
+    "password" : "vT+ZP?@6Kk\\g4Ap,"
+  }
+
+}

@@ -1,0 +1,15 @@
+Dados 	
+jalmeidafranca@hotmail.com	
+usuario : admin	
+senha : 4321
+
+Alterações
+ok -colocar checkbox sacoleira primeiro
+ok -ocultar checkbox cliente,outro
+
+cadastrar categorias
+Alimento
+Cosmetico
+Lingirie
+Enxofre
+Confecção

@@ -19,12 +19,16 @@ class Config extends Objeto
      */
     public static $objeto;
 
-    private function __construct(){
+    private function __construct( $dir='' ){
+        if($dir='')
+            $dir = dirname(dirname(__FILE__));
+
+
 		if($this->dev_mode){
-			$this->config = dirname(dirname(__FILE__)) . '/config-dev.json';
+			$this->config = $dir . '/config-dev.json';
 		}
 		else {
-			$this->config = dirname(dirname(__FILE__)) . '/config.json';
+			$this->config = $dir . '/config.json';
 		}
     }
 

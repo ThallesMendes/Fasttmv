@@ -123,10 +123,16 @@ abstract class Dao implements IDao
          * $param['nome_do_campo'] = array('value'=>'%termo para consulta%', 'operador'=>'like');
          * $param['id'] = array('value'=>'valor', 'operador'=>'=');
          */
+        $i = 1;
         foreach( $params as $p ){
             if($p['value'] <> '' && $p['value'] <> 'null' && $p['value'] <> "%null%" && $p['value'] <> "(null)"){
-                if( $p['operador'] == 'like' || $p['operador'] == '=' )
-                    $query->andWhere($alias . '.' . key($params) . ' ' . $p['operador'] . ' :' . key($params) . '' )->setParameter(':' . key($params), $p['value']);
+                if( $p['operador'] == 'like' || $p['operador'] == '=' ) {
+                    if($i==1)
+                        $query->where($alias . '.' . key($params) . ' ' . $p['operador'] . ' :' . key($params) . '')->setParameter(':' . key($params), $p['value']);
+                    else
+                        $query->andWhere($alias . '.' . key($params) . ' ' . $p['operador'] . ' :' . key($params) . '')->setParameter(':' . key($params), $p['value']);
+                }
+                $i++;
             }
             next($params);
         }

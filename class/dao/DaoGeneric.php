@@ -153,7 +153,6 @@ class DaoGeneric extends Dao
         try {
             $repository = Conexao::getInstance()->getRepository($this->entity);
             $query = $repository->createQueryBuilder('c');
-            $query->where('c.id is not null');
             $query = $this->addWhere($query,$params,'c');
 
             $result = $this->page($query, $page);

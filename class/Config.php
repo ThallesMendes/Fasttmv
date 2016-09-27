@@ -8,7 +8,8 @@ namespace Fasttmv\Classes;
 class Config extends Objeto
 {
      private $config;
-	 private $dev_mode = true;
+	 private $dev_mode;
+     private $path_config;
     /**
      * @var Objeto
      */
@@ -19,16 +20,16 @@ class Config extends Objeto
      */
     public static $objeto;
 
-    private function __construct( $dir='' ){
-        if($dir='')
-            $dir = dirname(dirname(__FILE__));
+    private function __construct(){
 
+        if($this->getPathConfig() == '')
+            $this->setPathConfig(dirname(dirname(__FILE__)));
 
-		if($this->dev_mode){
-			$this->config = $dir . '/config-dev.json';
+		if($this->isDevMode()){
+			$this->config = $this->getPathConfig() . '/config-dev.json';
 		}
 		else {
-			$this->config = $dir . '/config.json';
+			$this->config = $this->getPathConfig() . '/config.json';
 		}
     }
 
@@ -55,5 +56,36 @@ class Config extends Objeto
         return isset($json->{$type}->{$config}) ? $json->{$type}->{$config} : $default;
     }
 
+    /**
+     * @return boolean
+     */
+    public function isDevMode()
+    {
+        return $this->dev_mode;
+    }
+
+    /**
+     * @param boolean $dev_mode
+     */
+    public function setDevMode($dev_mode)
+    {
+        $this->dev_mode = $dev_mode;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPathConfig()
+    {
+        return $this->path_config;
+    }
+
+    /**
+     * @param mixed $path_config
+     */
+    public function setPathConfig($path_config)
+    {
+        $this->path_config = $path_config;
+    }
 
 }

@@ -86,6 +86,16 @@ class Config extends Objeto
     public function setPathConfig($path_config)
     {
         $this->path_config = $path_config;
+
+        if($this->getPathConfig() == '')
+            $this->setPathConfig(dirname(dirname(__FILE__)));
+
+        if($this->isDevMode()){
+            $this->config = $this->getPathConfig() . '/config-dev.json';
+        }
+        else {
+            $this->config = $this->getPathConfig() . '/config.json';
+        }
     }
 
 }

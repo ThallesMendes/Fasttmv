@@ -8,6 +8,11 @@ abstract class ViewController implements ControllerProviderInterface
 {
     const TITLE         = '';
     const PAGE_HEADER   = '';
+
+    /**
+     * @var \Twig_Environment
+     */
+    private $twig;
     /**
      * Rotas para controlador
      * @param Application $app
@@ -18,7 +23,8 @@ abstract class ViewController implements ControllerProviderInterface
         /**
          * @var \Silex\ControllerCollection $factory
          */
-        $factory = $app['controllers_factory'];
+        $factory    = $app['controllers_factory'];
+        $this->twig = $app['twig'];
 
         /**
          * Requisições GET

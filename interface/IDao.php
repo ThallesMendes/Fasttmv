@@ -34,15 +34,17 @@ interface IDao
     /**
      * @param array $params
      * @param bool $One
+     * @param mixed $orderBy
      * @return array|bool|null|object
      */
-    public function find(Array $params , $One = false );
+    public function find(Array $params , $One = false, $orderBy = null );
 
     /**
      * @param array $params
+     * @param int $page
      * @return array|null
      */
-    public function findDinamic(Array $params );
+    public function findDinamic(Array $params , $page = 1);
 
     /**
      * @param $id

@@ -101,11 +101,12 @@ class Controller implements ControllerProviderInterface
      * @param Application $app
      * @param array $params
      * @param string $entity
+     * @param int $page
      * @return JsonResponse
      */
-    public function _fetch( Application $app, array $params, $entity='' ){
+    public function _fetch( Application $app, array $params, $entity='', $page=1 ){
         try {
-            $result = DaoGeneric::getInstance($entity)->findDinamic($params);
+            $result = DaoGeneric::getInstance($entity)->findDinamic($params,$page);
             if($result['result'] == null || !is_array($result['result']) || !count($result['result']) > 0) {
                 return new JsonResponse(array('return' => false),404);
             }

@@ -342,4 +342,29 @@ class Controller implements ControllerProviderInterface
             'total'=>$result['total']
         );
     }
+
+    /**
+     * @param array $result
+     * @return array
+     */
+    public function encodeResultObjects( array $result ){
+        /**
+         * instancia array
+         */
+        $json = array();
+
+        /**
+         * @var Entity $r
+         */
+        foreach( $result as $r ){
+            // adiciona todos elementos no array em formato de array
+            $json[] = $r->toArray();
+        }
+
+        return array(
+            'return'=>true,
+            'embeded'=>$json,
+            'total'=>count($result)
+        );
+    }
 }

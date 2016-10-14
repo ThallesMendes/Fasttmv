@@ -90,7 +90,7 @@ class Controller implements ControllerProviderInterface
                 return new JsonResponse(array('return'=>false),404);
             }
 
-            return new JsonResponse(array('return'=>true, 'embeded'=>$result));
+            return new JsonResponse( $this->encodeResultObjects( $result ) );
         }
         catch( \Exception $e ){
             $app->abort(500, $entity . '::' . $e->getMessage());

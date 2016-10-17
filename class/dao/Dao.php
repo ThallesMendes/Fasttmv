@@ -132,6 +132,19 @@ abstract class Dao implements IDao
                     else
                         $query->andWhere($alias . '.' . key($params) . ' ' . $p['operador'] . ' :' . key($params) . '')->setParameter(':' . key($params), $p['value']);
                 }
+                else if ( $p['operador'] == 'between' ){
+                    /**
+                     * Para passagem de periodos o parametro deve ser passado com duas data separadas pelo delimitador "|"
+                     */
+                    $values = explode('|',$p['value']);
+                    
+                    if($i==1)
+                        $query->where($alias . '.' . key($param) . ' between ' . ':' . key($params) . '1' . ' and :' . key($params) . '2')
+                            ->setParameter(':' . key($params) . '1', $values[0])->setParameter(':' . key($params) . '2', $values[1]);
+                    else
+                        $query->andWhere($alias . '.' . key($param) . ' between ' . ':' . key($params) . '1' . ' and :' . key($params) . '2')
+                            ->setParameter(':' . key($params) . '1', $values[0])->setParameter(':' . key($params) . '2', $values[1]);
+                }
                 $i++;
             }
             next($params);

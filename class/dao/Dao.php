@@ -137,7 +137,7 @@ abstract class Dao implements IDao
                      * Para passagem de periodos o parametro deve ser passado com duas data separadas pelo delimitador "|"
                      */
                     $values = explode('|',$p['value']);
-                    
+
                     if($i==1)
                         $query->where($alias . '.' . key($param) . ' between ' . ':' . key($params) . '1' . ' and :' . key($params) . '2')
                             ->setParameter(':' . key($params) . '1', $values[0])->setParameter(':' . key($params) . '2', $values[1]);

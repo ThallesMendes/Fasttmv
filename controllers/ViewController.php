@@ -54,5 +54,20 @@ abstract class ViewController implements ControllerProviderInterface
 
     }
 
+    /**
+     * @param Application $app
+     * @param array $params
+     * @return bool|mixed
+     */
+    public function session( Application $app, array $params ){
+        foreach( $params as $p ){
+            if($app['session']->get($p) === null){
+                return false;
+                break;
+            }
+            return $app['session'];
+        }
+    }
+
 
 }

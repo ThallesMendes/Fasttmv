@@ -102,11 +102,12 @@ class Controller implements ControllerProviderInterface
      * @param array $params
      * @param string $entity
      * @param int $page
+     * @param string $orderBy
      * @return JsonResponse
      */
-    public function _fetch( Application $app, array $params, $entity='', $page=1 ){
+    public function _fetch( Application $app, array $params, $entity='', $page=1, $orderBy=null ){
         try {
-            $result = DaoGeneric::getInstance($entity)->findDinamic($params,$page);
+            $result = DaoGeneric::getInstance($entity)->findDinamic($params,$page, $orderBy);
             if($result['result'] == null || !is_array($result['result']) || !count($result['result']) > 0) {
                 return new JsonResponse(array('return' => false),404);
             }
@@ -126,9 +127,6 @@ class Controller implements ControllerProviderInterface
      */
     public function _get( Application $app, $id, $entity='' ){
         try {
-            if(!Util::isValidUuid($id))
-                $app->abort(500,"id {$id} não é um UUID válido");
-
             /**
              * @var Entity|boolean $object
              */

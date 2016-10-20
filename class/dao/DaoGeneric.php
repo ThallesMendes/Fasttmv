@@ -145,15 +145,18 @@ class DaoGeneric extends Dao
     /**
      * @param array $params
      * @param int $page
+     * @param string $orderBy
      * @return mixed
      * @throws \Exception
      */
-    public function findDinamic(Array $params, $page = 1)
+    public function findDinamic(Array $params, $page = 1, $orderBy=null)
     {
         try {
             $repository = Conexao::getInstance()->getRepository($this->entity);
             $query = $repository->createQueryBuilder('c');
             $query = $this->addWhere($query,$params,'c');
+            if($orderBy <> null)
+                $query->orderBy('c.' . $orderBy,'ASC');
 
             $result = $this->page($query, $page);
 

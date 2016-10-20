@@ -42,9 +42,10 @@ interface IDao
     /**
      * @param array $params
      * @param int $page
+     * @param string $orderBy
      * @return array|null
      */
-    public function findDinamic(Array $params , $page = 1);
+    public function findDinamic(Array $params , $page = 1, $orderBy = null);
 
     /**
      * @param $id

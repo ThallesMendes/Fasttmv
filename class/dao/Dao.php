@@ -68,7 +68,7 @@ abstract class Dao implements IDao
         return array();
     }
 
-    public function findDinamic(Array $params, $page = 1)
+    public function findDinamic(Array $params, $page = 1, $orderBy=null)
     {
         // TODO: Implement findDinamic() method.
         return array();

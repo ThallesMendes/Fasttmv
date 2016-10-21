@@ -44,5 +44,21 @@ class Util extends Objeto
         return true;
     }
 
+    /**
+     * @param $dateString
+     * @param string $separator
+     * @param bool $inverse
+     * @return mixed|string
+     */
+    public static function formatStringDate( $dateString , $separator='/', $inverse=true){
+        if( count(explode($separator,$dateString)) == 3){
+            if($inverse)
+                $dateString = implode('-', array_reverse(explode($separator, $dateString)));
+            else
+                $dateString = str_replace($separator,'-',$dateString);
+        }
+        return $dateString;
+    }
+
 
 }

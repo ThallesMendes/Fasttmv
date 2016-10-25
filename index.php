@@ -14,12 +14,6 @@ $app['debug'] = DEV_MODE;
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 $app->register(new Silex\Provider\ValidatorServiceProvider());
 
-/**
- * provider para render das views
- */
-$app->register(new Silex\Provider\TwigServiceProvider(), array(
-    'twig.path' => __DIR__.'/views',
-));
 
 /**
  * provider para segurança da api
@@ -46,25 +40,10 @@ $app->error(function (\Exception $e, $code) use ($app) {
     return $app->json(array('return'=>false, 'message'=>$e->getMessage(),'code'=>$code));
 });
 
-/**
- * configurações TWIG
- */
-$app['twig'] = $app->share($app->extend('twig', function($twig, $app) {
-    $twig->addFunction(new \Twig_SimpleFunction('asset', function ($asset) {
-        return sprintf(URL_RESOURCE . '%s', ltrim($asset, '/'));
-    }));
-
-    $twig->addFunction(new \Twig_SimpleFunction('link', function ($url) {
-        return sprintf(URL_RAIZ . '%s', ltrim($url, '/'));
-    }));
-    return $twig;
-}));
-
 
 /**
  * Configuração de rotas da API contendo as funcionalidades das classes DAO
  */
-$app->mount('/rest/agendamento-categoria', new \Fasttmv\API\AgendamentoCategoriaController());
 
 /**
  * Configuração de rotas das views

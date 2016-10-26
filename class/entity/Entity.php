@@ -2,6 +2,7 @@
 namespace Fasttmv\Entity;
 
 
+use Fasttmv\Classes\Config;
 use Fasttmv\Dao\DaoGeneric;
 use Fasttmv\Interfaces\IEntity;
 
@@ -36,5 +37,16 @@ abstract class Entity implements IEntity
         if($object == false)
             return null;
         return $object;
+    }
+
+    /**
+     * @param string $entidade
+     * @return string
+     */
+    public static function getNamespace( $entidade='' ){
+        if($entidade == '')
+            $entidade = __CLASS__;
+
+        return Config::getInstance()->getConfig('global','namespace_entity','Fasttmv\\Entity\\') . $entidade;
     }
 }

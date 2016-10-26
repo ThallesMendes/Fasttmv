@@ -60,5 +60,4 @@ class Util extends Objeto
         return $dateString;
     }
 
-
 }

@@ -115,18 +115,19 @@ abstract class Dao implements IDao
      * @param QueryBuilder $query
      * @param array $params
      * @param string $alias
+     * @param int $iWhere - inicio do contador de wheres para casos onde wheres foram passados antes da chamada da função
      * @return QueryBuilder
      */
-    public function addWhere( QueryBuilder $query, Array $params, $alias = "c" ){
+    public function addWhere( QueryBuilder $query, Array $params, $alias = "c", $iWhere = 1 ){
         /**
          * Exemplo de uso
          * $param['nome_do_campo'] = array('value'=>'%termo para consulta%', 'operador'=>'like');
          * $param['id'] = array('value'=>'valor', 'operador'=>'=');
          */
-        $i = 1;
+        $i = $iWhere;
         foreach( $params as $p ){
             if($p['value'] <> '' && $p['value'] <> 'null' && $p['value'] <> "%null%" && $p['value'] <> "(null)"){
-                if( $p['operador'] == 'like' || $p['operador'] == '=' ) {
+                if( $p['operador'] == 'like' || $p['operador'] == '=' || $p['operador'] == '<>' ) {
                     if($i==1)
                         $query->where($alias . '.' . key($params) . ' ' . $p['operador'] . ' :' . key($params) . '')->setParameter(':' . key($params), $p['value']);
                     else

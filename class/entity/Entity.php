@@ -15,7 +15,7 @@ abstract class Entity implements IEntity
     /**
      * @return array
      */
-    public abstract function toArray() : array;
+    public abstract function toArray();
 
     /**
      * @param array|\stdClass $arr

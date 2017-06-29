@@ -140,7 +140,7 @@ abstract class Dao implements IDao
                     $values = explode('|',$p['value']);
 
                     if($i==1)
-                        $query->where($alias . '.' . key($param) . ' between ' . ':' . key($params) . '1' . ' and :' . key($params) . '2')
+                        $query->where($alias . '.' . key($params) . ' between ' . ':' . key($params) . '1' . ' and :' . key($params) . '2')
                             ->setParameter(':' . key($params) . '1', $values[0])->setParameter(':' . key($params) . '2', $values[1]);
                     else
                         $query->andWhere($alias . '.' . key($param) . ' between ' . ':' . key($params) . '1' . ' and :' . key($params) . '2')
